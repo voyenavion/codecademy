@@ -1,0 +1,38 @@
+/*jshint multistr:true */
+
+var text = "sommmmmmm adjfkdljfdlfj lkdjfljdfdfdfdfdf kjdlfkjdflkdjfdlfj ljljljljlj z Shaun a;ldfldjfdlfj dlfjjffjfjfjeie Shsun Shaun";
+
+var myName = "Shaun"; 
+var checkIts = [];
+var hits = [];
+
+outerloop: 
+for (var i = 0; i < text.length; i++) {
+    if (text[i] === myName[0]) {
+    
+        for (var j = i; j < myName.length + i; j++) {
+            if (text[j] === myName[j - i]) { 
+                checkIts.push(text[j]);
+                if (checkIts.join("") === myName) {
+                    hits.push(checkIts); 
+                    checkIts = []; 
+                }
+            } 
+            else {
+                continue outerloop;
+            }
+        }
+    }    
+    
+}
+
+//why does it end the outerloop when it encounters a near match
+// like "Shsun"? 
+
+
+if (hits.length === 0) {
+    console.log("Your name wasn't found!");
+}
+else {
+    console.log(hits);
+}
